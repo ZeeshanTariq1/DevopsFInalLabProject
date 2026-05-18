@@ -106,9 +106,9 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f k8s/mongo-deployments.yaml
-          kubectl apply -f k8s/backend-deployments.yaml
-          kubectl apply -f k8s/frontend-deployments.yaml
+          kubectl apply -f k8s/mongo-deployment.yaml
+          kubectl apply -f k8s/backend-deployment.yaml
+          kubectl apply -f k8s/frontend-deployment.yaml
           kubectl rollout restart deployment/backend
           kubectl rollout restart deployment/frontend
 

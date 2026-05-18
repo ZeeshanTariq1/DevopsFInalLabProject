@@ -45,7 +45,7 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend
-          npm run build
+          npx vite build 
 
   # ─── STAGE 2: Docker Build & Push ────────────────────────────────
   docker-build-push:

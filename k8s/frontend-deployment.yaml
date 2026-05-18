@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: frontend
 spec:
   replicas: 1
   selector:
@@ -17,6 +19,13 @@ spec:
         image: zeeshantariq765/taskmanager-frontend:latest
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +35,7 @@ spec:
   selector:
     app: frontend
   ports:
-  - port: 80
+  - protocol: TCP
+    port: 80
     targetPort: 80
   type: LoadBalancer

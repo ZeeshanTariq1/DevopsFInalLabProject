@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  labels:
+    app: mongodb
 spec:
   replicas: 1
   selector:
@@ -20,6 +22,13 @@ spec:
         volumeMounts:
         - name: mongo-storage
           mountPath: /data/db
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
       volumes:
       - name: mongo-storage
         emptyDir: {}
@@ -32,6 +41,7 @@ spec:
   selector:
     app: mongodb
   ports:
-  - port: 27017
+  - protocol: TCP
+    port: 27017
     targetPort: 27017
   type: ClusterIP

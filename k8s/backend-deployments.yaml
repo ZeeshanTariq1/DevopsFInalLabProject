@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  labels:
+    app: backend
 spec:
   replicas: 1
   selector:
@@ -22,6 +24,27 @@ spec:
           value: "mongodb://mongo-service:27017/taskmanager"
         - name: PORT
           value: "5000"
+        - name: NODE_ENV
+          value: "production"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 30
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
 ---
 apiVersion: v1
 kind: Service
@@ -31,6 +54,7 @@ spec:
   selector:
     app: backend
   ports:
-  - port: 5000
+  - protocol: TCP
+    port: 5000
     targetPort: 5000
   type: ClusterIP

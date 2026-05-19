@@ -59,7 +59,7 @@ export default function App() {
     <div className="app">
       <header>
         <h1>📋 Smart Task Manager</h1>
-        <p>DevOps Final Lab Project — Full Stack with AKS Deployment</p>
+        <p>DevOps Final Lab Project hvyy krke — Full Stack with AKS Deployment</p>
       </header>
 
       <div className="stats">

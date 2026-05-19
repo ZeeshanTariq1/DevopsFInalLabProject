@@ -60,6 +60,7 @@ export default function App() {
       <header>
         <h1>📋 Smart Task Manager</h1>
         <p>DevOps Final Lab Project hvyy krke — Full Stack with AKS Deployment</p>
+        <p>Group Members - Abdul Mateen Moeed Butt Muhammad Zeeshan Tariq</p>
       </header>
 
       <div className="stats">
